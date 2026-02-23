@@ -1,0 +1,8 @@
+project_name: "Army of Agents"
+version: "0.1.0"
+agents_dir: "./agents"
+workspace_dir: "./workspace"
+
+models:
+  primary: "gpt-4o"
+  secondary: "gpt-3.5-turbo"
