@@ -1,9 +1,23 @@
-version: '3.8'
+version: "3.9"
 
 services:
-  orchestrator:
+  agent-army:
     build: .
-    volumes:
-      - .:/app
+    stdin_open: true
+    tty: true
     env_file:
       - .env
+    volumes:
+      - ./workspace:/app/workspace   # agents' output persists on your machine
+      - ./agents:/app/agents         # edit prompts without rebuilding
+      - ./config.yaml:/app/config.yaml
+```
+
+---
+
+## Step 8: `.gitignore`
+```
+.env
+__pycache__/
+*.pyc
+workspace/

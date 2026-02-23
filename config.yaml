@@ -1,8 +1,25 @@
-project_name: "Army of Agents"
-version: "0.1.0"
-agents_dir: "./agents"
-workspace_dir: "./workspace"
+agents:
+  architect:
+    model: "claude-sonnet-4-6"
+    system_prompt: "agents/architect.md"
+    description: "Plans features, writes specs, delegates tasks"
 
-models:
-  primary: "gpt-4o"
-  secondary: "gpt-3.5-turbo"
+  backend:
+    model: "gpt-4o"
+    system_prompt: "agents/backend.md"
+    description: "APIs, databases, business logic"
+
+  frontend:
+    model: "claude-sonnet-4-6"
+    system_prompt: "agents/frontend.md"
+    description: "React components, UI, styling"
+
+  qa:
+    model: "gpt-4o-mini"
+    system_prompt: "agents/qa.md"
+    description: "Code review, tests, bug finding"
+
+  devops:
+    model: "claude-haiku-4-5-20251001"
+    system_prompt: "agents/devops.md"
+    description: "Docker, CI/CD, environment config"
