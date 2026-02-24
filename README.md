@@ -1,4 +1,4 @@
-# Agent Army — Project Context Handoff
+# Agent Army — Collaborative AI Workforce
 
 ## What This Project Is
 A dockerizable, model-agnostic AI agent workforce for software development.
@@ -45,17 +45,26 @@ powered by either Claude or GPT models via LiteLLM as the abstraction layer.
 - User has active Anthropic and OpenAI subscriptions with API access
 
 ## How the Workflow Runs
-4. Selected agents run in sequence, each receiving the architect plan as context
-5. Agents use tools (write_file, run_command, etc.) in an agentic loop until done
-6. Optional QA pass reviews all output at the end
+1. **Initialize**: Run `orchestrate.py` and specify your **Target Directory**.
+2. **Plan**: The Architect agent analyzes your goal and produce a structured technical spec.
+3. **Approve**: Review the plan and approve it to proceed.
+4. **Execute**: Selected agents (Backend, Frontend, etc.) run in sequence to build the project.
+5. **Review**: Optional QA pass reviews all output and flags potential issues.
 
 ## Run Commands
-- Local: `pip install -r requirements.txt` then `python orchestrate.py`
-- Docker: `docker compose up --build`
+- **Local**: 
+  ```bash
+  pip install -r requirements.txt
+  python orchestrate.py
+  ```
+- **Docker**: 
+  ```bash
+  docker compose up --build
+  ```
 
 ## What Still Needs Doing / Likely Next Tasks
-- Tailor agent system prompts in /agents/*.md to the user's specific stack
-- Add auto-parsing of architect plan to auto-select agents (currently manual)
-- Consider adding a memory layer (e.g. simple JSON or SQLite) for cross-session context
-- Add a --task CLI flag so it can be run non-interactively in pipelines
-- Potentially add more specialist agents (e.g. security, database migration, docs)
+- [ ] Tailor agent system prompts in `/agents/*.md` to specific tech stacks.
+- [ ] Add auto-parsing of architect plan to auto-select relevant agents.
+- [ ] Implement a memory layer (JSON/SQLite) for cross-session context.
+- [ ] Add a `--task` CLI flag for non-interactive pipeline use.
+- [ ] Add more specialist agents (Security, DB Migration, Documentation).
