@@ -8,16 +8,6 @@ services:
     env_file:
       - .env
     volumes:
-      - ./workspace:/app/workspace   # agents' output persists on your machine
+      - .:/app                       # mount everything for flexibility
       - ./agents:/app/agents         # edit prompts without rebuilding
       - ./config.yaml:/app/config.yaml
-```
-
----
-
-## Step 8: `.gitignore`
-```
-.env
-__pycache__/
-*.pyc
-workspace/

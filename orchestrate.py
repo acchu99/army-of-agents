@@ -58,10 +58,19 @@ def run_agent(agent_name: str, task: str, context: str = "") -> str:
 
 def main():
     console.print(Panel("[bold green]🤖 Agent Army — Software Dev Workflow[/]"))
+    
+    # 0. Setup Workspace
+    target_dir = Prompt.ask("\n[bold]Where should the agents work?[/]", default="workspace")
+    if not os.path.exists(target_dir):
+        os.makedirs(target_dir, exist_ok=True)
+    
+    # Update tools to use this directory as base (optional, depends on how we implement tools.py)
+    # For now, we'll just advise agents to use this path.
+    
     goal = Prompt.ask("\n[bold]What do you want to build?[/]")
 
     # 1. Architect plans
-    plan = run_agent("architect", goal)
+    plan = run_agent("architect", f"Target Directory: {target_dir}\nGoal: {goal}")
     console.print(Panel(plan, title="📋 Architect Plan"))
 
     if not Confirm.ask("\nProceed with this plan?"):
@@ -85,7 +94,7 @@ def main():
     for agent in agents_to_run:
         result = run_agent(
             agent,
-            f"Implement your portion of the plan below.",
+            f"Implement your portion of the plan below in the '{target_dir}' directory.",
             context=f"## Architect Plan\n{plan}"
         )
         results[agent] = result
@@ -99,7 +108,7 @@ def main():
         qa_result = run_agent("qa", "Review all code written by the other agents.", context=all_context)
         console.print(Panel(qa_result, title="🔍 QA Report"))
 
-    console.print("\n[bold green]✅ Workflow complete. Check /workspace for output files.[/]")
+    console.print(f"\n[bold green]✅ Workflow complete. Check '{target_dir}' for output files.[/]")
 
 if __name__ == "__main__":
     main()

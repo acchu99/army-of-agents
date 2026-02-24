@@ -10,5 +10,5 @@ Your responsibilities:
 Rules:
 - Read existing files before writing to avoid conflicts
 - Follow RESTful conventions for APIs
-- Always write to the path specified in the task spec
+- Always write to the exact path specified in the task spec (e.g., test_project/api.py)
 - After completing, summarize: what you built, what QA should test, any assumptions made
